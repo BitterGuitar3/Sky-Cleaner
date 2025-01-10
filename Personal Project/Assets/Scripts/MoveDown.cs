@@ -30,6 +30,7 @@ public class MoveDown : MonoBehaviour
         }
     }
 
+    //Basic hit registrations. Enemies and balloons are traveling from the top down so the tag of the object witht his script could have either.
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player") && CompareTag("Balloon"))
@@ -54,25 +55,26 @@ public class MoveDown : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-        else if (other.CompareTag("Bullet") && !CompareTag("Civillian"))
+        else if (other.CompareTag("Bullet") && CompareTag("Enemy"))
         {
             Debug.Log("Player shot an enemy");
             collision.PlayOneShot(sound);
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-        else if(other.CompareTag("Bullet") && CompareTag("Civillian"))
+        else if (other.CompareTag("Bullet") && CompareTag("Civillian"))
         {
-            Debug.Log("Player shot a civillian");
+            Debug.Log("Player shot a civilian");
             collision.PlayOneShot(sound);
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Player") && CompareTag("Civillian"))
+        else if(other.CompareTag("Player") && CompareTag("Civillian"))
         {
             Debug.Log("Player crashed into a civillian");
-            collision.PlayOneShot(sound);
             gameManager.GameOver();
+            collision.PlayOneShot(sound);
+            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
-
     }
 }

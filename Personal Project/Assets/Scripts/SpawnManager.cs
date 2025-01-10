@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+//This script deals with spawning everything needed in the game at their respective times. Deletion and destruction of objects will be dealt with by their own scripts
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] basicEnemyPrefabs;
@@ -33,13 +33,8 @@ public class SpawnManager : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
+    //Spawns the basic small enemies at regular intervals based on game difficulty
     public IEnumerator SpawnBasics()
     {
         while (gameManager.isGameActive)
@@ -49,6 +44,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    //Spawns the big groups of enemies at regular intervals based on game difficulty. The plane that i can spawn is actually a civillian
     public IEnumerator SpawnRares()
     {
         while (gameManager.isGameActive)
@@ -66,7 +62,7 @@ public class SpawnManager : MonoBehaviour
             SpawnRandomBalloon();
         }
     }
-
+    //The 3 IEnumerators below are fore more background decoration spawning. Gives a sense of movement
     public IEnumerator SpawnTrees()
     {
         while (true)
@@ -124,9 +120,6 @@ public class SpawnManager : MonoBehaviour
         int treeNum = Random.Range(0, trees.Length);
         Vector3 spawnPos = new Vector3(Random.Range(-treeRangeX, treeRangeX), -99, treeSpawnz);
         Instantiate(trees[treeNum], spawnPos, trees[treeNum].transform.rotation);
-        //treeNum = Random.Range(0, trees.Length);
-        //spawnPos = new Vector3(Random.Range(-treeRangeX, treeRangeX), -99, treeSpawnz);
-        //Instantiate(trees[treeNum], spawnPos, trees[treeNum].transform.rotation);
     }
 
     void SpawnCloud(float xPos)

@@ -7,17 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     private float xSpeed = 25.0f;
     private float zSpeed = 10.0f;
-    //private float rotationZ = 0f;
     private float horizontalBoundary = 20;
     private float verticalBoundary = 14;
     private float heightBoundary = 0.86f;
-    //private float newZ;
     private int bulletCount;
     private int bulletLimit = 2;
     public float horizontalInput;
     public float verticalInput;
-
-    //private Vector3 startRotation;
 
     private Rigidbody rb;
     public GameObject bullet;
@@ -87,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //Shoot when the space bar is pressed
+    //Shoot when the space bar is pressed. Allows player to only have a certain number of bullets exist at one time
     private void Shoot()
     {
         if (Input.GetKeyDown(KeyCode.Space) && bulletCount <= bulletLimit)
@@ -99,7 +95,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Locks the planes rotation between -15 and 15 degrees
+    //Locks the planes rotation between -15 and 15 degrees. All of the commented out code are different attempts at achieving the plane rotation
     private void LockedRotation()
     {
         /*
@@ -139,7 +135,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Balloon") && !other.CompareTag("Bullet") && !other.CompareTag("Cloud"))
+        //If player collides with an enemy, trigger their death
+        if (other.CompareTag("Enemy") || other.CompareTag("Civillian"))
         {
             Debug.Log("Player Died");
             gameManager.gameAudio.PlayOneShot(explosion, 1.0f);

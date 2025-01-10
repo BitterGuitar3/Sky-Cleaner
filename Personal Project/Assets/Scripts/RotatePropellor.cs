@@ -5,12 +5,6 @@ using UnityEngine;
 public class RotatePropellor : MonoBehaviour
 {
     private int rotateSpeed = 1200;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {

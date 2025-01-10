@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
     public GameObject titleScreen;
     private SpawnManager spawnManager;
     public AudioSource gameAudio;
-   // public AudioClip explosion;
-    //private int explosionCount = 0;
     private int score;
     public bool isGameActive;
     // Start is called before the first frame update
@@ -27,23 +25,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawnManager.SpawnLeftClouds());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*if(GameObject.FindGameObjectsWithTag("Player").Length == 0 && explosionCount == 0)
-        {
-            gameAudio.PlayOneShot(explosion, 0.25f);
-            explosionCount++;
-        }*/
-        
-    }
-
+    //Updates the score and the score text
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score; 
     }
-
+    
+    //Ends the game and stops the coroutines.
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
@@ -51,6 +40,7 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
     }
 
+    //Coroutines continue as long as isGameActive is true
     public void StartGame(float difficulty)
     {
         isGameActive = true;

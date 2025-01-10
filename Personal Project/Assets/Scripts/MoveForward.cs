@@ -11,6 +11,7 @@ public class MoveForward : MonoBehaviour
     public AudioClip pop;
     public AudioClip birdNoise;
     public AudioClip thunk;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Move bullet until it reaches out of bounds
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         if (transform.position.z > zBoundary)
@@ -27,23 +29,4 @@ public class MoveForward : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
- /*   private void OnTriggerEnter(Collider other) //NEED TO FIX
-    {
-        if (other.CompareTag("Balloon"))
-        {
-            collision.PlayOneShot(pop);
-            Debug.Log("Pop");
-        }
-        else if (other.CompareTag("Enemy"))
-        {
-            collision.PlayOneShot(birdNoise);
-            Debug.Log("Caw");
-        }
-        else if (other.CompareTag("Civillian"))
-        {
-            collision.PlayOneShot(thunk);
-            Debug.Log("Thunk");
-        }
-    }*/
 }

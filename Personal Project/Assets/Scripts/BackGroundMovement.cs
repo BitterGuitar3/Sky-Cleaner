@@ -19,6 +19,7 @@ public class BackGroundMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Deals with either destorying background objects that are no longer needed or moving the "Earth" back itself to make it look like its infinite
         transform.Translate(Vector3.back * speed * Time.deltaTime);
         if(transform.position.z < startPosition.z - repeatWidth && gameObject.CompareTag("Earth"))
         {
